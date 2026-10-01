@@ -24,10 +24,17 @@ const speciesOccAddedTimeSort = (
   return date2.getTime() - date1.getTime();
 };
 
-function increaseCount(occ: Occurrence, is5x: boolean) {
-  if (Number.isNaN(occ.data.number)) return;
+function canInitiateCount(occ: Occurrence) {
+  return (
+    !Number.isFinite(occ.data.number) &&
+    !occ.data['number-ranges'] &&
+    !occ.data.abundance
+  );
+}
 
-  const addOneCount = () => (occ.data.number as number)++; // eslint-disable-line no-param-reassign
+function increaseCount(occ: Occurrence, is5x: boolean) {
+  const addOneCount = () =>
+    canInitiateCount(occ) ? (occ.data.number = 1) : occ.data.number++;
 
   if (is5x) {
     [...Array(5)].forEach(addOneCount);

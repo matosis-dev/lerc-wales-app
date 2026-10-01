@@ -96,7 +96,7 @@ const SpeciesListItem = ({
     const value =
       occ.data.number || occ.data['number-ranges'] || occ.data.abundance;
 
-    if (!value && isDisabled) return null;
+    if (isDisabled) return null;
 
     return (
       <IncrementalButton

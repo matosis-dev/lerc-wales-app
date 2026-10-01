@@ -6,7 +6,7 @@ import AnimatedNumber from './AnimatedNumber';
 interface Props {
   onClick: any;
   onLongClick?: any;
-  value: number;
+  value?: number | string;
   disabled?: boolean;
 }
 
@@ -16,10 +16,11 @@ const IncrementalButton = ({
   value,
   disabled,
 }: Props) => {
-  const isNumber = Number.isFinite(value);
+  const valueFiniteNumber = parseFiniteNumber(value);
+  const isString = typeof value === 'string';
 
   const onClick = () => {
-    if (disabled || !isNumber) return;
+    if (disabled || isString) return;
 
     onClickProp();
 
@@ -27,7 +28,7 @@ const IncrementalButton = ({
   };
 
   const onLongClick = () => {
-    if (disabled || !isNumber) return;
+    if (disabled || isString) return;
 
     if (!onLongClickProp) {
       onClickProp();
@@ -40,8 +41,8 @@ const IncrementalButton = ({
   };
 
   let valueItem;
-  if (isNumber) {
-    valueItem = <AnimatedNumber value={value} />;
+  if (valueFiniteNumber) {
+    valueItem = <AnimatedNumber value={valueFiniteNumber} />;
   } else if (value) {
     valueItem = <span className="empty">{value}</span>;
   } else {
@@ -63,5 +64,9 @@ const IncrementalButton = ({
     </Button>
   );
 };
+
+function parseFiniteNumber(value: unknown): number | undefined {
+  return Number.isFinite(value) ? Number(value) : undefined;
+}
 
 export default IncrementalButton;
