@@ -61,6 +61,7 @@ const survey: Partial<Survey> & { taxa: string } = {
   ],
 
   occ: {
+    skipAutoIncrement: true,
     attrs: {
       stage: {
         menuProps: { icon: progressIcon },
