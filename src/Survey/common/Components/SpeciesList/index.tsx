@@ -28,7 +28,8 @@ function canInitiateCount(occ: Occurrence) {
   return (
     !Number.isFinite(occ.data.number) &&
     !occ.data['number-ranges'] &&
-    !occ.data.abundance
+    !occ.data.abundance &&
+    !occ.data.numberDAFOR
   );
 }
 

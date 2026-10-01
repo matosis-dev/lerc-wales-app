@@ -44,7 +44,7 @@ const IncrementalButton = ({
   if (valueFiniteNumber) {
     valueItem = <AnimatedNumber value={valueFiniteNumber} />;
   } else if (value) {
-    valueItem = <span className="empty">{value}</span>;
+    valueItem = <span className="truncate px-2 text-sm">{value}</span>;
   } else {
     valueItem = <span className="empty">N/A</span>;
   }

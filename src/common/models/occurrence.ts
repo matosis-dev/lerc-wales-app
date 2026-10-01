@@ -53,6 +53,7 @@ type Attrs = Omit<OccurrenceData, 'taxon'> & {
   machineInvolvement?: MachineInvolvement;
   'number-ranges'?: string;
   number?: any;
+  numberDAFOR?: string;
   abundance?: any;
   comment?: string;
   stage?: string;

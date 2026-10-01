@@ -94,7 +94,10 @@ const SpeciesListItem = ({
     const increase5xCountWrap = () => increaseCount(occ, true);
 
     const value =
-      occ.data.number || occ.data['number-ranges'] || occ.data.abundance;
+      occ.data.number ||
+      occ.data['number-ranges'] ||
+      occ.data.abundance ||
+      occ.data.numberDAFOR;
 
     if (isDisabled) return null;
 
